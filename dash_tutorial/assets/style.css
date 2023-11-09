@@ -1,0 +1,240 @@
+/* this tag replace instance of body tag. */
+.center-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+ 
+.simple-form {
+  max-width: 500px;
+  padding: 100px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #aaa;
+  background-color: #fff;
+}
+ 
+.input-field {
+  display: block;
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+ 
+.simple-button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+ 
+/* alert box */
+.static-info {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px #aaa;
+  text-align: center;
+  font-size: 16px;
+}
+ 
+.registration-link {
+  color: #007BFF;
+  text-decoration: none;
+  margin-left: 5px;
+}
+ 
+.custom-fade-in {
+  animation: fadeIn 1s;
+}
+ 
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+ 
+.sidebar {
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px; /* Initial width */
+  transition: width 0.5s;
+}
+ 
+ 
+#sidebar {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #f8f9fa;
+}
+ 
+#sidebar h2 {
+  text-align: left;
+  margin-bottom: 0;
+}
+ 
+/* Hide the blurb on a small screen */
+#blurb {
+  display: none;
+}
+ 
+#sidebar-toggle {
+  display: none;
+}
+ 
+#collapse *:first-child {
+  margin-top: 1rem;
+}
+ 
+/* add the three horizontal bars icon for the toggle */
+.navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3e%3cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+ 
+#page-content {
+  padding: 2rem 1rem;
+}
+ 
+@media (min-width: 48em) {
+  #sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 20rem;
+    text-align: left;
+    transition: margin 0.3s ease-in-out, padding 0.3s ease-in-out;
+  }
+ 
+  #sidebar-toggle {
+    display: inline-block;
+    position: relative;
+    top: 0;
+    transition: top 0.3s ease-in-out;
+  }
+ 
+  /* add negative margin to sidebar to achieve the collapse */
+  #sidebar.collapsed {
+    margin-left: -15.5rem;
+    padding-right: 0.5rem;
+  }
+ 
+  /* move the sidebar toggle up to the top left corner */
+  #sidebar.collapsed #sidebar-toggle {
+    top: -2rem;
+  }
+ 
+  /* also adjust margin of page content */
+  #sidebar.collapsed ~ #page-content {
+    margin-left: 6.5rem;
+  }
+ 
+  /* move all contents of navbar other than header (containing toggle) further
+     off-screen */
+  #sidebar.collapsed > *:not(:first-child) {
+    margin-left: -6rem;
+    margin-right: 6rem;
+  }
+ 
+  /* reveal the blurb on a large screen */
+  #blurb {
+    display: block;
+  }
+ 
+  /* Hide the toggle on a large screen */
+  #navbar-toggle {
+    display: none;
+  }
+ 
+  #collapse {
+    display: block;
+  }
+ 
+  /* set margins of the main content so that it doesn't overlap the sidebar */
+  #page-content {
+    margin-left: 22rem;
+    margin-right: 2rem;
+    transition: margin-left 0.3s ease-in-out;
+  }
+}
+ 
+@media (max-width: 768px) {
+  .sidebar {
+      width: 0; /* Hide the sidebar on small screens */
+  }
+}
+ 
+ 
+ 
+/* Media Query for responsiveness */
+@media screen and (max-width: 600px) {
+  .registration-form {
+      width: 90%;
+  }
+}
+ 
+ 
+/* try with https://codepen.io/moubi/pen/OJbQxGx */
+.parent {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+ 
+.main {
+  display: flex;
+  flex-grow: 1;
+}
+ 
+.content {
+  flex-grow: 1;
+}
+ 
+/* --------- Non-flexbox related styles --------- */
+.child {
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  /* margin: 1%; */
+  padding: 1px;
+  font-size: 20px;
+  line-height: 20px;
+  color: #ffe8c3;
+  background-color: #00000000;
+  /* border-radius: 10px; */
+  border: 1px solid #f58ba2;
+}
+ 
+.sidebar-div {
+  /* display: flex; */
+  align-items: center;
+  justify-content: center;
+  /* margin: 1%; */
+  padding: 1px;
+  font-size: 100px;
+  line-height: 20px;
+  color: #05468f;
+  background-color: #00000000;
+  /* border-radius: 10px; */
+  border: 1px solid #f58ba2;
+}
+ 
+ 
+ 
+
+
