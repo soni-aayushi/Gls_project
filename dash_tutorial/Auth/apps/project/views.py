@@ -9,7 +9,7 @@ from fastapi.encoders import jsonable_encoder
 Base.metadata.create_all(bind=engine)
 project_router = APIRouter()
 
-#created the project
+#project create
 @project_router.post("/projects", response_model=ProjectResponse)
 async def create_project(project: PojectCreate, session: Session = Depends(get_session)):
     start_date = datetime.strptime(project.start_date, '%Y-%m-%d')
@@ -27,7 +27,7 @@ async def create_project(project: PojectCreate, session: Session = Depends(get_s
     session.commit()
     session.refresh(db_project)
 
-    # Include the required fields in the response
+    
     response = ProjectResponse(
         id=db_project.id,
         name=db_project.name,
@@ -39,14 +39,13 @@ async def create_project(project: PojectCreate, session: Session = Depends(get_s
     )
     return response
 
-#update the project
+#project update
 @project_router.put("/projects/{project_id}", response_model=ProjectResponse)
 async def update_project(
     project_id: int,
     project: PojectCreate,
     session: Session = Depends(get_session)
 ):
-    # Query the project by its ID
     db_project = session.query(Project).filter(Project.id == project_id).first()
 
     if not db_project:
@@ -73,23 +72,22 @@ async def update_project(
         manage_by=db_project.manage_by
     )
 
-#list of the project
+#project list
 @project_router.get("/projects", response_model=List[ProjectResponse])
 async def list_projects(session: Session = Depends(get_session)):
     projects = session.query(Project).all()
     return jsonable_encoder(projects)
 
-#delete the project
+#project delete
 @project_router.delete("/projects/{project_id}", response_model=MessageResponse)
 async def delete_project(project_id: int, session: Session = Depends(get_session)):
-    # Query the project by its ID
-    db_project = session.query(Project).filter(Project.id == project_id).first()
 
+    db_project = session.query(Project).filter(Project.id == project_id).first()
     if not db_project:
         raise HTTPException(status_code=404, detail="Project not found")
 
-    # Delete the project from the database
-    session.delete(db_project)
+    
+    session.delete(db_project)#delete project to database
     session.commit()
 
     return MessageResponse(message="Project successfully deleted")
@@ -105,7 +103,7 @@ async def create_workflow_stage(stage: CreateWorkflowstages, session: Session = 
     return db_stage
 
 
-# Get a list of workflow stages
+# workflow_stages list
 @project_router.get("/workflowstages", response_model=List[WorkflowStageResponse])
 async def list_workflow_stages(session: Session = Depends(get_session)):
     stages = session.query(WorkFlowStages).all()
@@ -119,7 +117,7 @@ async def get_workflow_stage(stage_id: int, session: Session = Depends(get_sessi
         raise HTTPException(status_code=404, detail="Workflow stage not found")
     return stage
 
-# Update a workflow stage
+# Update workflow_stage
 @project_router.put("/workflowstages/{stage_id}", response_model=WorkflowStageResponse)
 async def update_workflow_stage(stage_id: int, stage: CreateWorkflowstages, session: Session = Depends(get_session)):
     db_stage = session.query(WorkFlowStages).filter(WorkFlowStages.id == stage_id).first()
@@ -131,7 +129,6 @@ async def update_workflow_stage(stage_id: int, stage: CreateWorkflowstages, sess
 
     session.commit()
     session.refresh(db_stage)
-    
     return db_stage
 
 # Delete a workflow stage
